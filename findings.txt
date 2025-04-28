@@ -1,0 +1,1 @@
+Interestingly the genres.csv in the metadata zip for the dataset is incorrectly mapped (assuming) there are many piano songs labled as punk rock and othe missmatched genres, no longer using this as in the contrastive test
