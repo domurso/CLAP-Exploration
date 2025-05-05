@@ -1,10 +1,14 @@
-import zipfile
+import os
 import pandas as pd
 
+META_DIR = "fma_metadata"  # adjust if needed
+csv_files = ["tracks.csv", "features.csv", "echonest.csv", "genres.csv"]
 
-# Load only the first 20 rows of genres.csv
-with zipfile.ZipFile("fma_metadata.zip") as z:
-    genre_path = next(n for n in z.namelist() if n.endswith("genres.csv"))
-    df = pd.read_csv(z.open(genre_path))
-
-print("genres.csv (first 20 rows)", df.to_string())
+for fname in csv_files:
+    path = os.path.join(META_DIR, fname)
+    # read only the header row
+    df = pd.read_csv(path, nrows=0, low_memory=False)
+    print(f"{fname} columns ({len(df.columns)}):")
+    for col in df.columns:
+        print("  -", col)
+    print()
